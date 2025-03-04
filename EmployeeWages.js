@@ -29,17 +29,30 @@ function  getWorkingHours(empCheck) {
 let empHrs = 0;
 empCheck = Math.floor(Math.random()*10)%3;
 empHrs  = getWorkingHours(empCheck);
-let empWage = empHrs * WAGE_PER_HOUR;
-console.log("Emp Wage : "+empWage);
+// let empWage = empHrs * WAGE_PER_HOUR;
+// console.log("Emp Wage : "+empWage);
 
-//uc4
+// //uc4
 
-const NUMBER_OF_WORKING_DAY = 2
-empHrs = 0
-for(let day = 0;day<NUMBER_OF_WORKING_DAY;day++){
-  let empCheck = Math.floor(Math.random()*10)%3;
-  empHrs += getWorkingHours(empCheck);
+// const NUMBER_OF_WORKING_DAY = 2
+// empHrs = 0
+// for(let day = 0;day<NUMBER_OF_WORKING_DAY;day++){
+//   let empCheck = Math.floor(Math.random()*10)%3;
+//   empHrs += getWorkingHours(empCheck);
 
-}
-empWage = empHrs  * WAGE_PER_HOUR;
-console.log("Total hrs : "+empHrs+" Emp wages :"+empWage);
+// }
+// empWage = empHrs  * WAGE_PER_HOUR;
+// console.log("Total hrs : "+empHrs+" Emp wages :"+empWage);
+
+//uc5
+const MAX_HRS_IN_MONTH = 100;
+const NUMBER_OF_WORKING_DAY = 10
+let totalEmpHrs =0
+let totalWorkingDays = 0
+while(totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAY){
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random()*10)%3;
+    totalEmpHrs = getWorkingHours(empCheck);
+  }
+let empWage = totalEmpHrs * WAGE_PER_HOUR;
+console.log("UC05 - Total Days: "+totalWorkingDays+" Total Hrs: "+totalEmpHrs+ " Emp Wage: "+empWage)
