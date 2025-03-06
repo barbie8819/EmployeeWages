@@ -3,7 +3,6 @@ const IS_ABSENT = 0;
 let empCheck = Math.floor(Math.random() * 10) % 2;
 if (empCheck == IS_ABSENT) {
     console.log("Employee is Absent");
-    return;
 } else {
     console.log("Employee is Present");
 }
@@ -67,6 +66,7 @@ console.log("UC 8 - Emp Wage Map totalHrs:", Array.from(empDailyWageMap.values()
 
 // UC 9: Arrow Functions for Total Hours and Wages
 const findTotal = (totalVal, dailyVal) => totalVal + dailyVal;
+
 let totalHours = Array.from(empDailyHrsMap.values()).reduce(findTotal, 0);
 let totalSalary = empDailyWageArr.filter(dailyWage => dailyWage > 0).reduce(findTotal, 0);
 
@@ -89,3 +89,31 @@ console.log("Non Working Days:", nonWorkingDays);
 
 // UC 10: Displaying Daily Hours & Wages
 console.log("UC 10 - Daily Hours Worked and Wage Earned:", empDailyHrsAndWageArr.join(""));
+
+// UC 11: Total Hours and Wages Using Reduce
+let totalWagesEarned = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+    .reduce((totalWage, dailyHrsAndWage) => totalWage += dailyHrsAndWage.dailyWage, 0);
+
+let totalHoursWorked = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0)
+    .reduce((totalHours, dailyHrsAndWage) => totalHours += dailyHrsAndWage.dailyHours, 0);
+
+console.log("UC 11A Total Hours: " + totalHoursWorked + " Total Wages: " + totalWagesEarned);
+
+process.stdout.write("UC 11B Logging Full Work Days\n");
+empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 8)
+    .forEach(dailyHrsAndWage => process.stdout.write(dailyHrsAndWage.toString()));
+
+let partWorkingDayStrArr = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 4)
+    .map(dailyHrsAndWage => dailyHrsAndWage.toString());
+
+console.log("\nUC 11C PartWorkingDayStrings: " + partWorkingDayStrArr);
+
+let nonWorkingDayNums = empDailyHrsAndWageArr
+    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 0)
+    .map(dailyHrsAndWage => dailyHrsAndWage.dayNum);
+
+console.log("UC 11D NonWorkingDayNums: " + nonWorkingDayNums);
